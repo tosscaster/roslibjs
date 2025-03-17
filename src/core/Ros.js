@@ -13,6 +13,10 @@ import ActionClient from '../actionlib/ActionClient.js';
 import SimpleActionServer from '../actionlib/SimpleActionServer.js';
 import { EventEmitter } from 'eventemitter3';
 
+function isServer() {
+	return (typeof process !== 'undefined' && process.versions !== null);
+}
+
 /**
  * Manages connection to the server and all interactions with ROS.
  *
@@ -61,8 +65,8 @@ export default class Ros extends EventEmitter {
         socketAdapter(this)
       );
     } else if (this.transportLibrary === 'websocket') {
-      // Detect if in browser vs in NodeJS
-      if (typeof window !== 'undefined') {
+      // Detect if in browser or web worker vs in NodeJS
+      if (typeof window !== 'undefined' || !isServer()) {
         if (!this.socket || this.socket.readyState === WebSocket.CLOSED) {
           const sock = new WebSocket(url);
           sock.binaryType = 'arraybuffer';
