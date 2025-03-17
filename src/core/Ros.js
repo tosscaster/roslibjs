@@ -14,7 +14,7 @@ import SimpleActionServer from '../actionlib/SimpleActionServer.js';
 import { EventEmitter } from 'eventemitter3';
 
 function isServer() {
-	return (typeof process !== 'undefined' && process.versions !== null);
+  return (typeof process !== 'undefined' && process.versions !== null);
 }
 
 /**
