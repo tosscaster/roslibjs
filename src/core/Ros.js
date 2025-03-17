@@ -13,9 +13,38 @@ import ActionClient from '../actionlib/ActionClient.js';
 import SimpleActionServer from '../actionlib/SimpleActionServer.js';
 import { EventEmitter } from 'eventemitter3';
 
-function isServer() {
-  return (typeof process !== 'undefined' && process.versions !== null);
+function isWebWorker() {
+  return (
+    typeof window === 'undefined' &&
+    typeof self !== 'undefined' &&
+    // @ts-ignore
+    // eslint-disable-next-line no-undef
+    self instanceof WorkerGlobalScope
+  );
 }
+
+/*
+function isWebWorker() {
+  return (
+    typeof self !== 'undefined' &&
+    typeof self.postMessage === 'function' &&
+    typeof window === 'undefined'
+  );
+}
+
+function isWebWorker() {
+  return (
+    typeof self !== 'undefined' &&
+    typeof self.importScripts === 'function' &&
+    typeof window === 'undefined'
+  );
+}
+
+function isWebWorker() {
+  // @ts-ignore
+  return typeof process.browser;
+}
+*/
 
 /**
  * Manages connection to the server and all interactions with ROS.
@@ -66,7 +95,7 @@ export default class Ros extends EventEmitter {
       );
     } else if (this.transportLibrary === 'websocket') {
       // Detect if in browser or web worker vs in NodeJS
-      if (typeof window !== 'undefined' || !isServer()) {
+      if (typeof window !== 'undefined' || isWebWorker()) {
         if (!this.socket || this.socket.readyState === WebSocket.CLOSED) {
           const sock = new WebSocket(url);
           sock.binaryType = 'arraybuffer';

@@ -327,7 +327,7 @@ function Dt(h) {
     s.op === "publish" ? h.emit(s.topic, s.msg) : s.op === "service_response" ? h.emit(s.id, s) : s.op === "call_service" ? h.emit(s.service, s) : s.op === "send_action_goal" ? h.emit(s.action, s) : s.op === "cancel_action_goal" || s.op === "action_feedback" || s.op === "action_result" ? h.emit(s.id, s) : s.op === "status" && (s.id ? h.emit("status:" + s.id, s) : h.emit("status", s));
   }
   function i(s, c) {
-    s.op === "png" ? typeof window > "u" ? import("./decompressPng-CSQbvwxb.js").then(({ default: f }) => f(s.data, c)) : import("./decompressPng-DN6PxcLs.js").then(({ default: f }) => f(s.data, c)) : c(s);
+    s.op === "png" ? typeof window > "u" ? import("./decompressPng-86MVFLXI.js").then(({ default: f }) => f(s.data, c)) : import("./decompressPng-DN6PxcLs.js").then(({ default: f }) => f(s.data, c)) : c(s);
   }
   function a(s, c) {
     if (!At)
@@ -1181,7 +1181,9 @@ class Ht extends xe {
   }
 }
 function dr() {
-  return typeof process < "u" && process.versions !== null;
+  return typeof window > "u" && typeof self < "u" && // @ts-ignore
+  // eslint-disable-next-line no-undef
+  self instanceof WorkerGlobalScope;
 }
 class Er extends xe {
   /**
@@ -1213,7 +1215,7 @@ class Er extends xe {
         Dt(this)
       );
     else if (this.transportLibrary === "websocket")
-      if (typeof window < "u" || !dr()) {
+      if (typeof window < "u" || dr()) {
         if (!this.socket || this.socket.readyState === WebSocket.CLOSED) {
           const i = new WebSocket(r);
           i.binaryType = "arraybuffer", this.socket = Object.assign(i, Dt(this));
