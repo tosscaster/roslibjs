@@ -23,6 +23,11 @@ function isWebWorker() {
   );
 }
 
+function isDeno() {
+  // @ts-ignore
+  return typeof Deno !== 'undefined';
+}
+
 /*
 function isWebWorker() {
   return (
@@ -94,8 +99,8 @@ export default class Ros extends EventEmitter {
         socketAdapter(this)
       );
     } else if (this.transportLibrary === 'websocket') {
-      // Detect if in browser or web worker vs in NodeJS
-      if (typeof window !== 'undefined' || isWebWorker()) {
+      // Detect if in browser or web worker vs Deno vs in NodeJS
+      if (typeof window !== 'undefined' || isWebWorker() || isDeno()) {
         if (!this.socket || this.socket.readyState === WebSocket.CLOSED) {
           const sock = new WebSocket(url);
           sock.binaryType = 'arraybuffer';

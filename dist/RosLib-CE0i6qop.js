@@ -5,7 +5,7 @@ import { EventEmitter as xe } from "eventemitter3";
 function sr(h) {
   return h && h.__esModule && Object.prototype.hasOwnProperty.call(h, "default") ? h.default : h;
 }
-function Fr(h) {
+function Br(h) {
   if (h.__esModule) return h;
   var u = h.default;
   if (typeof u == "function") {
@@ -327,7 +327,7 @@ function Dt(h) {
     s.op === "publish" ? h.emit(s.topic, s.msg) : s.op === "service_response" ? h.emit(s.id, s) : s.op === "call_service" ? h.emit(s.service, s) : s.op === "send_action_goal" ? h.emit(s.action, s) : s.op === "cancel_action_goal" || s.op === "action_feedback" || s.op === "action_result" ? h.emit(s.id, s) : s.op === "status" && (s.id ? h.emit("status:" + s.id, s) : h.emit("status", s));
   }
   function i(s, c) {
-    s.op === "png" ? typeof window > "u" ? import("./decompressPng-86MVFLXI.js").then(({ default: f }) => f(s.data, c)) : import("./decompressPng-DN6PxcLs.js").then(({ default: f }) => f(s.data, c)) : c(s);
+    s.op === "png" ? typeof window > "u" ? import("./decompressPng-CM0pTVk5.js").then(({ default: f }) => f(s.data, c)) : import("./decompressPng-DN6PxcLs.js").then(({ default: f }) => f(s.data, c)) : c(s);
   }
   function a(s, c) {
     if (!At)
@@ -1185,7 +1185,10 @@ function dr() {
   // eslint-disable-next-line no-undef
   self instanceof WorkerGlobalScope;
 }
-class Er extends xe {
+function Er() {
+  return typeof Deno < "u";
+}
+class Dr extends xe {
   /**
    * @param {Object} [options]
    * @param {string} [options.url] - The WebSocket URL for rosbridge. Can be specified later with `connect`.
@@ -1215,7 +1218,7 @@ class Er extends xe {
         Dt(this)
       );
     else if (this.transportLibrary === "websocket")
-      if (typeof window < "u" || dr()) {
+      if (typeof window < "u" || dr() || Er()) {
         if (!this.socket || this.socket.readyState === WebSocket.CLOSED) {
           const i = new WebSocket(r);
           i.binaryType = "arraybuffer", this.socket = Object.assign(i, Dt(this));
@@ -2029,15 +2032,15 @@ class zt extends xe {
     this.ros.callOnConnection(i);
   }
 }
-const Dr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const vr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   Action: zt,
   Param: kt,
-  Ros: Er,
+  Ros: Dr,
   Service: ae,
   Topic: pe
 }, Symbol.toStringTag, { value: "Module" }));
-class vr extends xe {
+class Ar extends xe {
   /**
    * @param {Object} options
    * @param {Ros} options.ros - The ROSLIB.Ros connection handle.
@@ -2076,10 +2079,10 @@ class vr extends xe {
     });
   }
 }
-const Ar = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const gr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   ActionClient: gt,
-  ActionListener: vr,
+  ActionListener: Ar,
   Goal: Gt,
   SimpleActionServer: Ht
 }, Symbol.toStringTag, { value: "Module" }));
@@ -2132,14 +2135,14 @@ class Xe {
     return u.orientation.invert(), u.position.multiplyQuaternion(u.orientation), u.position.x *= -1, u.position.y *= -1, u.position.z *= -1, u;
   }
 }
-const gr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Tr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   Pose: Xe,
   Quaternion: Fe,
   Transform: lt,
   Vector3: Ne
 }, Symbol.toStringTag, { value: "Module" }));
-class Tr extends xe {
+class Cr extends xe {
   /**
    * @param {Object} options
    * @param {Ros} options.ros - The ROSLIB.Ros connection handle.
@@ -2243,9 +2246,9 @@ class Tr extends xe {
     this._isDisposed = !0;
   }
 }
-const Cr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const br = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ROS2TFClient: Tr,
+  ROS2TFClient: Cr,
   TFClient: Vt
 }, Symbol.toStringTag, { value: "Module" })), Yt = 0, jt = 1, Xt = 2, Qt = 3;
 class Wt {
@@ -2425,7 +2428,7 @@ class tr {
       );
   }
 }
-class br {
+class yr {
   /**
    * @param {Object} options
    * @param {Element} options.xml - The XML element to parse.
@@ -4489,7 +4492,7 @@ function ur() {
   return se._updateLiveList = k, se.Attr = ve, se.CDATASection = Ze, se.CharacterData = Ae, se.Comment = Je, se.Document = me, se.DocumentFragment = Ge, se.DocumentType = $e, se.DOMImplementation = oe, se.Element = ue, se.Entity = st, se.EntityReference = Ke, se.LiveNodeList = B, se.NamedNodeMap = re, se.Node = U, se.NodeList = b, se.Notation = nt, se.Text = We, se.XMLSerializer = he, se.ProcessingInstruction = ie, se;
 }
 var je = {}, vt = {}, Ft;
-function yr() {
+function wr() {
   return Ft || (Ft = 1, function(h) {
     var u = ut().freeze;
     h.XML_ENTITIES = u({
@@ -6629,7 +6632,7 @@ function yr() {
   }(vt)), vt;
 }
 var ct = {}, Bt;
-function wr() {
+function Nr() {
   if (Bt) return ct;
   Bt = 1;
   var h = ut(), u = rr(), r = pt(), i = h.isHTMLEscapableRawTextElement, a = h.isHTMLMimeType, s = h.isHTMLRawTextElement, c = h.hasOwn, f = h.NAMESPACE, g = r.ParseError, N = r.DOMException, T = 0, m = 1, M = 2, E = 3, I = 4, O = 5, J = 6, w = 7;
@@ -7085,10 +7088,10 @@ function wr() {
   }, ct.XMLReader = G, ct.parseUtils = W, ct.parseDoctypeCommentOrCData = P, ct;
 }
 var It;
-function Nr() {
+function _r() {
   if (It) return je;
   It = 1;
-  var h = ut(), u = ur(), r = pt(), i = yr(), a = wr(), s = u.DOMImplementation, c = h.hasDefaultHTMLNamespace, f = h.isHTMLMimeType, g = h.isValidMimeType, N = h.MIME_TYPE, T = h.NAMESPACE, m = r.ParseError, M = a.XMLReader;
+  var h = ut(), u = ur(), r = pt(), i = wr(), a = Nr(), s = u.DOMImplementation, c = h.hasDefaultHTMLNamespace, f = h.isHTMLMimeType, g = h.isValidMimeType, N = h.MIME_TYPE, T = h.NAMESPACE, m = r.ParseError, M = a.XMLReader;
   function E(p) {
     return p.replace(/\r[\n\u0085]/g, `
 `).replace(/[\r\u0085\u2028]/g, `
@@ -7259,7 +7262,7 @@ function Nr() {
   return je.__DOMHandler = O, je.DOMParser = I, je.normalizeLineEndings = E, je.onErrorStopParsing = K, je.onWarningStopParsing = ee, je;
 }
 var Lt;
-function _r() {
+function Sr() {
   if (Lt) return $;
   Lt = 1;
   var h = ut();
@@ -7268,11 +7271,11 @@ function _r() {
   $.ParseError = u.ParseError, $.DOMException = u.DOMException, $.ExceptionCode = u.ExceptionCode;
   var r = ur();
   $.DOMImplementation = r.DOMImplementation, $.XMLSerializer = r.XMLSerializer, $.Attr = r.Attr, $.CDATASection = r.CDATASection, $.CharacterData = r.CharacterData, $.Comment = r.Comment, $.Document = r.Document, $.DocumentFragment = r.DocumentFragment, $.DocumentType = r.DocumentType, $.Element = r.Element, $.EntityReference = r.EntityReference, $.Entity = r.Entity, $.NamedNodeMap = r.NamedNodeMap, $.Node = r.Node, $.NodeList = r.NodeList, $.Notation = r.Notation, $.ProcessingInstruction = r.ProcessingInstruction, $.Text = r.Text;
-  var i = Nr();
+  var i = _r();
   return $.DOMParser = i.DOMParser, $.onErrorStopParsing = i.onErrorStopParsing, $.onWarningStopParsing = i.onWarningStopParsing, $;
 }
-var Ut = _r();
-class Sr {
+var Ut = Sr();
+class xr {
   /**
    * @param {Object} options
    * @param {Element | null} [options.xml] - The XML element to parse.
@@ -7312,7 +7315,7 @@ class Sr {
           this.links[T.name] = T;
         }
       } else if (g.tagName === "joint") {
-        var E = new br({
+        var E = new yr({
           xml: g
         });
         this.joints[E.name] = E;
@@ -7320,7 +7323,7 @@ class Sr {
     }
   }
 }
-const xr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Or = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   URDF_BOX: jt,
   URDF_CYLINDER: Xt,
@@ -7332,44 +7335,44 @@ const xr = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   UrdfLink: tr,
   UrdfMaterial: Tt,
   UrdfMesh: $t,
-  UrdfModel: Sr,
+  UrdfModel: xr,
   UrdfSphere: Kt,
   UrdfVisual: er
-}, Symbol.toStringTag, { value: "Module" })), Or = "1.4.1";
+}, Symbol.toStringTag, { value: "Module" })), Mr = "1.4.1";
 globalThis.ROSLIB = {
-  REVISION: Or,
-  ...Dr,
-  ...Ar,
+  REVISION: Mr,
+  ...vr,
   ...gr,
-  ...Cr,
-  ...xr
+  ...Tr,
+  ...br,
+  ...Or
 };
 export {
   zt as A,
   Gt as G,
   kt as P,
   Fe as Q,
-  Or as R,
+  Mr as R,
   ae as S,
   pe as T,
   Wt as U,
   Ne as V,
   sr as a,
-  Er as b,
+  Dr as b,
   gt as c,
-  vr as d,
+  Ar as d,
   Ht as e,
   Xe as f,
-  Fr as g,
+  Br as g,
   lt as h,
   Vt as i,
-  Tr as j,
+  Cr as j,
   Jt as k,
   Zt as l,
   tr as m,
   Tt as n,
   $t as o,
-  Sr as p,
+  xr as p,
   Kt as q,
   er as r,
   Yt as s,
